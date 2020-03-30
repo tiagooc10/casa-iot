@@ -1,0 +1,16 @@
+Trabalho de Mestrado - DCC - UFMG
+
+
+Aluno: Tiago Oliveira Castro
+Orientador: Daniel Fernandes Macedo
+
+
+O código implementado neste trabalho, que diz respeito ao controle de acesso
+se encontra nas pastas:
+
+	test/analiseContexto/
+	test/hierarquia/
+	test/parser/
+	test/banco de dados/ - Parte do código foi implementado por mim, a que diz respeito
+			       especificamente ao controle de acesso.
+	data/*
