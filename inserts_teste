@@ -1,0 +1,109 @@
+//USUARIOS
+insert into users values (1,"usuario1", "t@t", "", 9420701, 10);
+insert into users values (2,"usuario2", "t@t", "", 9420702, 10);
+insert into users values (3,"usuario3", "t@t", "", 9420703, 10);
+insert into users values (4,"usuario4", "t@t", "", 9420704, 10);
+insert into users values (5,"usuario5", "t@t", "", 9420705, 10);
+insert into users values (6,"usuario6", "t@t", "", 9420706, 10);
+insert into users values (7,"usuario7", "t@t", "", 9420707, 10);
+insert into users values (8,"usuario8", "t@t", "", 9420708, 10);
+insert into users values (9,"usuario9", "t@t", "", 9420709, 10);
+insert into users values (10,"usuario10", "t@t", "", 9420710, 10);
+
+
+
+//DISPOSITIVOS
+insert into things values (1,"wemo","lab",0);
+insert into things values (2,"hue","lab",0);
+insert into things values (3,"iris","lab",0);
+insert into things values (4,"rfid","lab",0);
+insert into things values (5,"presenca","lab",0);
+insert into things values (6,"arduino","lab",0);
+insert into things values (7,"arCondicionado","lab",0);
+insert into things values (8,"playerMusica","lab",0);
+insert into things values (11,"teste1","lab",1);
+insert into things values (12,"teste2","lab",0);
+insert into things values (13,"teste3","lab",1);
+insert into things values (14,"teste4","lab",0);
+insert into things values (15,"teste5","lab",1);
+insert into things values (16,"teste6","lab",0);
+insert into things values (17,"teste7","lab",1);
+insert into things values (18,"teste8","lab",0);
+insert into things values (20,"persiana","lab",0);
+insert into things values (22,"lampadas","lab",0);
+
+insert into resources values (17,1,"status wemo", 0);
+
+insert into valoresAtributosUsuarios values(23829,"localizacao","ufmg",now());
+insert into valoresAtributosUsuarios values(23829,"idade","15",now());
+insert into valoresAtributosUsuarios values(9420703,"localizacao","ufmg",now());
+insert into valoresAtributosUsuarios values(9420703,"projeto","maniot",now());
+insert into valoresAtributosUsuarios values(9420703,"idade","14",now());
+
+insert into valoresAtributosDispositivos values(11,"localizacao","2103",now());
+insert into valoresAtributosDispositivos values(11,"bateria","67",now());
+
+insert into valoresAtributosDispositivos values(13,"localizacao","2103",now());
+insert into valoresAtributosDispositivos values(13,"bateria","67",now());
+
+insert into valoresAtributosDispositivos values(11,"nome","teste1",now());
+insert into valoresAtributosDispositivos values(12,"nome","teste2",now());
+insert into valoresAtributosDispositivos values(13,"nome","teste3",now());
+insert into valoresAtributosDispositivos values(14,"nome","teste4",now());
+insert into valoresAtributosDispositivos values(15,"nome","teste5",now());
+insert into valoresAtributosDispositivos values(16,"nome","teste6",now());
+insert into valoresAtributosDispositivos values(17,"nome","teste7",now());
+insert into valoresAtributosDispositivos values(18,"nome","teste8",now());
+insert into valoresAtributosDispositivos values(20,"nome","persiana",now());
+insert into valoresAtributosDispositivos values(22,"nome","lampadas",now());
+
+
+insert into valoresAtributosUsuarios values(9420703,"atributo1","15",now());
+insert into valoresAtributosUsuarios values(9420703,"atributo2","15",now());
+insert into valoresAtributosUsuarios values(9420703,"atributo3","15",now());
+insert into valoresAtributosUsuarios values(9420703,"atributo4","15",now());
+insert into valoresAtributosUsuarios values(9420703,"atributo5","15",now());
+insert into valoresAtributosUsuarios values(9420703,"atributo6","15",now());
+insert into valoresAtributosUsuarios values(9420703,"atributo7","15",now());
+insert into valoresAtributosUsuarios values(9420703,"atributo8","15",now());
+insert into valoresAtributosUsuarios values(9420703,"atributo9","15",now());
+insert into valoresAtributosUsuarios values(9420703,"atributo10","15",now());
+
+
+//ATRIBUTOS
+insert into atributos(nome,pai) values ("Topo",0);
+insert into atributos(entidade,tipo,nome) values (0,0,"idade");
+insert into atributos(entidade,tipo,nome) values (0,1,"localizacao");
+insert into atributos(entidade,tipo,nome) values (0,0,"projeto");
+insert into atributos(entidade,tipo,nome) values (1,1,"status");
+insert into atributos(entidade,tipo,nome) values (1,1,"consumo");
+insert into atributos(entidade,tipo,nome) values (9,1,"temperatura");
+insert into atributos(entidade,tipo,nome) values (11,1,"status");
+insert into atributos(entidade,tipo,nome) values (12,1,"status");
+insert into atributos(entidade,tipo,nome) values (13,1,"status");
+insert into atributos(entidade,tipo,nome) values (14,1,"status");
+insert into atributos(entidade,tipo,nome) values (15,1,"status");
+insert into atributos(entidade,tipo,nome) values (16,1,"status");
+insert into atributos(entidade,tipo,nome) values (17,1,"status");
+insert into atributos(entidade,tipo,nome) values (18,1,"status");
+insert into atributos(entidade,tipo,nome,pai) values (18,1,"tiago",4);
+
+insert into atributos(entidade,tipo,nome) values (0,0,"atributo1");
+insert into atributos(entidade,tipo,nome) values (0,0,"atributo2");
+insert into atributos(entidade,tipo,nome) values (0,0,"atributo3");
+insert into atributos(entidade,tipo,nome) values (0,0,"atributo4");
+insert into atributos(entidade,tipo,nome) values (0,0,"atributo5");
+insert into atributos(entidade,tipo,nome) values (0,0,"atributo6");
+insert into atributos(entidade,tipo,nome) values (0,0,"atributo7");
+insert into atributos(entidade,tipo,nome) values (0,0,"atributo8");
+insert into atributos(entidade,tipo,nome) values (0,0,"atributo9");
+insert into atributos(entidade,tipo,nome) values (0,0,"atributo10");
+
+insert into atributos(entidade,tipo,nome) values (20,1,"status");
+insert into atributos(entidade,tipo,nome) values (22,1,"status");
+
+
+
+mvn install:install-file -Dfile=AlienRFID.jar -DgroupId=org.alien -DartifactId=alien -Dversion=1 -Dpackaging=jar
+mvn install:install-file -Dfile=oscilloscope.jar -DgroupId=org.oscilloscope -DartifactId=oscilloscope -Dversion=1 -Dpackaging=jar
+mvn install:install-file -Dfile=tinyos.jar -DgroupId=org.tinyos -DartifactId=tinyos -Dversion=1 -Dpackaging=jar

@@ -1,0 +1,236 @@
+CREATE DATABASE maniot;
+
+CREATE TABLE maniot.aplications (
+  idAplication int(3) unsigned zerofill NOT NULL AUTO_INCREMENT,
+  name varchar(20) NOT NULL,
+  description varchar(255) DEFAULT NULL,
+  PRIMARY KEY (idAplication)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1
+;
+CREATE TABLE maniot.data (
+  idResource int(3) unsigned zerofill NOT NULL,
+  value varchar(100) DEFAULT NULL,
+  time datetime DEFAULT NULL,
+  KEY idResource (idResource)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1
+;
+CREATE TABLE maniot.resources (
+  idResource int(3) unsigned zerofill NOT NULL AUTO_INCREMENT,
+  idThing int(3) unsigned zerofill NOT NULL,
+  name varchar(50) NOT NULL,
+  idAdm int(3) unsigned zerofill NOT NULL,
+  PRIMARY KEY (idResource),
+  KEY idThing (idThing)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1
+;
+CREATE TABLE maniot.scheduling (
+  idScheduling int(3) unsigned zerofill NOT NULL AUTO_INCREMENT,
+  idThing int(3) unsigned zerofill NOT NULL,
+  idResource int(3) unsigned zerofill NOT NULL,
+  idUser int(3) unsigned zerofill NOT NULL,
+  action int(11) DEFAULT NULL,
+  newValue varchar(50) DEFAULT NULL,
+  date int(11) DEFAULT NULL,
+  time int(11) DEFAULT NULL,
+  count int(11) DEFAULT NULL,
+  others varchar(50) DEFAULT NULL,
+  PRIMARY KEY (idScheduling),
+  KEY idThing (idThing),
+  KEY idResource (idResource),
+  KEY idUser (idUser)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1
+;
+CREATE TABLE maniot.things (
+  idThing int(3) unsigned zerofill NOT NULL AUTO_INCREMENT,
+  name varchar(50) NOT NULL,
+  location varchar(50) DEFAULT NULL,
+  type int(3) NOT NULL,
+  PRIMARY KEY (idThing)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1
+;
+CREATE TABLE maniot.users (
+  idUser int(3) unsigned zerofill NOT NULL AUTO_INCREMENT,
+  name varchar(50) NOT NULL,
+  login varchar(20) NOT NULL,
+  password varchar(20) DEFAULT NULL,
+  randomID int(11) DEFAULT NULL,
+  priority int(11) zerofill NOT NULL,
+  PRIMARY KEY (idUser)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1
+;
+CREATE TABLE maniot.usersPermissions (
+  idPermission int(11) unsigned zerofill NOT NULL AUTO_INCREMENT,
+  idDispositivo int(11) NOT NULL,
+  idSensor int(11) NOT NULL,
+  idOwner int(11) NOT NULL,
+  idOperation int(11) NOT NULL,
+  politicas varchar(5000) NOT NULL,
+  pai int(11) unsigned DEFAULT 1,
+  PRIMARY KEY (idPermission)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1
+;
+
+CREATE TABLE maniot.arvorePermissoesFilhos (
+  idPai int(11) unsigned NOT NULL,
+  idFilho int(11) NOT NULL,
+  PRIMARY KEY (idPai,idFilho)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1
+;
+
+CREATE TABLE maniot.functions (
+  idFunction int(11) unsigned zerofill NOT NULL AUTO_INCREMENT,
+  name varchar(50) NOT NULL,
+  idCreator int(11) NOT NULL,
+  PRIMARY KEY (idFunction)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1
+;
+CREATE TABLE maniot.functionsPermissions (
+  idDispositivo int(11) NOT NULL,
+  idSensor int(11) NOT NULL,
+  idFunction int(11) NOT NULL,
+  idOperation int(11) NOT NULL,
+  PRIMARY KEY (idDispositivo, idSensor, idFunction, idOperation)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1
+;
+CREATE TABLE maniot.usersFunctions (
+  idUser int(3) unsigned zerofill NOT NULL,
+  idFunction int(11) NOT NULL,
+  PRIMARY KEY (idUser, idFunction)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1
+;
+
+CREATE TABLE maniot.contextRules (
+  idRegra int(11) unsigned zerofill NOT NULL AUTO_INCREMENT,
+  idDispositivo1 int(11) NOT NULL,
+  idSensor1 int(11) NOT NULL,
+  idTipo int(11) NOT NULL,
+  idDispositivo2 int(11) NOT NULL,
+  idSensor2 int(11) NOT NULL,
+  comp varchar(50) NOT NULL,
+  valor varchar(50) NOT NULL,
+  usuarios varchar(50),
+  PRIMARY KEY (idRegra)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1
+;
+
+CREATE TABLE maniot.atributos (
+  id int(3) unsigned zerofill NOT NULL AUTO_INCREMENT,
+  entidade int(11) unsigned zerofill NOT NULL,
+  tipo int(11) NOT NULL,
+  nome varchar(50) NOT NULL,
+  pai int(11) unsigned DEFAULT 1,
+  PRIMARY KEY (id)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1
+;
+
+CREATE TABLE maniot.valoresAtributosUsuarios (
+  usuario int(11) unsigned zerofill NOT NULL,
+  atributo varchar(50) NOT NULL,
+  valor varchar(50) NOT NULL,
+  horario datetime DEFAULT NULL,
+  PRIMARY KEY (usuario,atributo)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1
+;
+
+CREATE TABLE maniot.valoresAtributosDispositivos (
+  dispositivo int(11) unsigned zerofill NOT NULL,
+  atributo varchar(50) NOT NULL,
+  valor varchar(50) NOT NULL,
+  horario datetime DEFAULT NULL,
+  PRIMARY KEY (dispositivo,atributo)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1
+;
+
+CREATE TABLE maniot.politicas(
+  idPolitica int(11) unsigned zerofill NOT NULL AUTO_INCREMENT,
+  politica varchar(5000) NOT NULL,
+  PRIMARY KEY (idPolitica)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1
+;
+
+CREATE TABLE maniot.politicasEstaticas (
+  idPolitica int(11) unsigned zerofill NOT NULL AUTO_INCREMENT,
+  politica varchar(5000) NOT NULL,
+  politicaDinamicaAssociada varchar(5000),
+  dispositivo int(11),
+  PRIMARY KEY (idPolitica)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1
+;
+
+CREATE TABLE maniot.politicasDinamicas (
+  idPolitica int(11) unsigned zerofill NOT NULL AUTO_INCREMENT,
+  politica varchar(5000) NOT NULL,
+  politicaEstaticaAssociada varchar(5000),
+  caching int(11) zerofill,
+  PRIMARY KEY (idPolitica)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1
+;
+
+CREATE TABLE maniot.politicasDinamicasEnviar (
+  idPolitica int(11) unsigned zerofill NOT NULL AUTO_INCREMENT,
+  politica varchar(5000) NOT NULL,
+  politicaEstaticaAssociada varchar(5000),
+  PRIMARY KEY (idPolitica)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1
+;
+
+CREATE TABLE maniot.politicasDinamicasEnviar (
+  idPolitica int(11) unsigned zerofill NOT NULL AUTO_INCREMENT,
+  politica varchar(5000) NOT NULL,
+  PRIMARY KEY (idPolitica)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1
+;
+
+
+CREATE TABLE maniot.respostaComando(
+  idComando varchar(500) NOT NULL,
+  resposta int(11) NOT NULL,
+  PRIMARY KEY (idComando)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1
+;
+
+CREATE TABLE maniot.caching (
+  idPolitica int(11) unsigned NOT NULL,
+  idUsuario int(11) NOT NULL,
+  inicio datetime DEFAULT NULL,
+  termino datetime DEFAULT NULL,
+  PRIMARY KEY (idPolitica, idUsuario)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1
+;
+
+
+CREATE TABLE maniot.respostaDispositivoAuxiliar(
+  idComando varchar(500) NOT NULL,
+  resposta int(11) NOT NULL,
+  PRIMARY KEY (idComando)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1
+;
+
+
+CREATE TABLE maniot.req (
+  idReq int(3) unsigned zerofill NOT NULL AUTO_INCREMENT,
+  idOwner int(11) DEFAULT NULL,
+  idDispositivo int(11) DEFAULT NULL,
+  idSensor int(11) DEFAULT NULL,
+  idOperation int(11) DEFAULT NULL,
+  PRIMARY KEY (idReq)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1
+;
+
+CREATE TABLE maniot.enviarComandoDispositivo (
+  idComando int(11) unsigned zerofill NOT NULL AUTO_INCREMENT,
+  comando varchar(500) NOT NULL,
+  PRIMARY KEY (idComando)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1
+;
+
+CREATE TABLE maniot.bateria(
+  id int(11) NOT NULL,
+  idDispositivo int(11) NOT NULL,
+  bateria int(11) NOT NULL,
+  PRIMARY KEY (idDispositivo)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1
+;
+
+
+

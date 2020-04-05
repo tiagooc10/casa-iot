@@ -1,0 +1,26 @@
+CREATE DATABASE cliente;
+
+
+
+CREATE TABLE cliente.politicas(
+  idPolitica int(11) unsigned zerofill NOT NULL AUTO_INCREMENT,
+  politica varchar(5000) NOT NULL,
+  PRIMARY KEY (idPolitica)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1
+;
+
+CREATE TABLE cliente.respostaDispositivoAuxiliar(
+  idComando varchar(500) NOT NULL,
+  resposta int(11) NOT NULL,
+  PRIMARY KEY (idComando)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1
+;
+
+CREATE TABLE cliente.caching (
+  idPolitica int(11) unsigned NOT NULL,
+  idUsuario int(11) NOT NULL,
+  inicio datetime DEFAULT NULL,
+  termino datetime DEFAULT NULL,
+  PRIMARY KEY (idPolitica, idUsuario)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1
+;
