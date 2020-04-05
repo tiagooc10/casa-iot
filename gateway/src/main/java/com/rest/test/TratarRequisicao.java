@@ -201,7 +201,7 @@ public class TratarRequisicao{
 
     //Adicionar jar:  mvn install:install-file -Dfile=AlienRFID.jar -DgroupId=maniot -DartifactId=maniot -Dversion=1 -Dpackaging=jar
     public Resposta SensorRFID(int sensor, int operacao) throws Exception{
-      System.out.println("Comando para RFID");
+/*    System.out.println("Comando para RFID");
       //Tag tagList[];
       String idTag="";
 
@@ -215,11 +215,12 @@ public class TratarRequisicao{
       //Identify if a tag was or was not readed in a certain time interval
       if(operacao==2){
         rf.isTagPresent(idTag);
-      }
-	    Resposta ri = new Resposta();
-	    return ri;       
-
+      }       
+*/
+      Resposta ri = new Resposta();
+      return ri;
     }
+
 
 
     public Resposta SensorPresenca(int sensor,int operacao) throws Exception{
